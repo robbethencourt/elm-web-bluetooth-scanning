@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, h1)
+import Html exposing (Html, text, div, h1, textarea, ul, li)
 import Html.Attributes exposing (class)
 
 
@@ -8,12 +8,18 @@ import Html.Attributes exposing (class)
 
 
 type alias Model =
-    {}
+    { scanInput : String
+    , scans : List String
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { scanInput = ""
+      , scans = []
+      }
+    , Cmd.none
+    )
 
 
 
@@ -36,7 +42,16 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ h1 [ class "text-center" ] [ text "Elm Web Bluetooth Scanning App!" ] ]
+        [ h1 [ class "text-center" ] [ text "Elm Web Bluetooth Scanning App!" ]
+        , textarea [] []
+        , ul []
+            [ listItems ]
+        ]
+
+
+listItems : Html Msg
+listItems =
+    li [] [ text "some text" ]
 
 
 
