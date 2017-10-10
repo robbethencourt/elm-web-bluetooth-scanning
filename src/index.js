@@ -7,7 +7,10 @@ const app = Main.embed(document.getElementById('root'))
 
 app.ports.requestBluetoothConnection.subscribe(() => {
   navigator.bluetooth.requestDevice({ filters: [{ services: ['battery_service'] }] })
-    .then(device => device.gatt.connect())
+    .then(device => {
+      device.gatt.connect()
+      app.ports.bluetoothConnectionResponse(device.name)
+    })
     .then(server => {
       // Getting Battery Service...
       return server.getPrimaryService('battery_service')

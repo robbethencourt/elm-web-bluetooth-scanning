@@ -9,14 +9,16 @@ import Html.Events exposing (onClick)
 
 
 type alias Model =
-    { scanInput : String
+    { deviceName : String
+    , scanInput : String
     , scans : List String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { scanInput = ""
+    ( { deviceName = ""
+      , scanInput = ""
       , scans = []
       }
     , Cmd.none
@@ -39,7 +41,7 @@ update msg model =
             ( model, requestBluetoothConnection () )
 
         BluetoothConnectionResponse response ->
-            ( model, Cmd.none )
+            ( { model | deviceName = response }, Cmd.none )
 
 
 
@@ -53,13 +55,13 @@ view model =
         , button [ onClick RequestBluetoothConnection ] [ text "Connect to Bluetooth" ]
         , textarea [] []
         , ul []
-            [ listItems ]
+            [ listItems model.deviceName ]
         ]
 
 
-listItems : Html Msg
-listItems =
-    li [] [ text "some text" ]
+listItems : String -> Html Msg
+listItems deviceName =
+    li [] [ text deviceName ]
 
 
 
