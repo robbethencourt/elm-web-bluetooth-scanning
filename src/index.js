@@ -19,7 +19,7 @@ app.ports.requestBluetoothConnection.subscribe(() => {
     .then(service => {
       console.log(service)
       // Getting Battery Level Characteristic...
-      return service.getCharacteristic('00002a19-0000-1000-8000-00805f934fb')
+      return service.getCharacteristic('00002a19-0000-1000-8000-00805f9b34fb')
     })
     .then(characteristic => {
       console.log(characteristic)
