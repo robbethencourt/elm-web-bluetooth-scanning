@@ -24,6 +24,7 @@ app.ports.requestBluetoothConnection.subscribe(() => {
     .then(characteristic => {
       console.log(characteristic)
       // Reading Battery Level...
+      characteristic.addEventListener('characteristicvaluechanged', handleScannedBarcodes)
       return characteristic.readValue()
     })
     .then(value => {
@@ -34,6 +35,11 @@ app.ports.requestBluetoothConnection.subscribe(() => {
       console.log(error)
     })
 })
+
+function handleScannedBarcodes (event) {
+  let scannedBarcode = event.target.value.getUint8(0)
+  console.log(scannedBarcode)
+}
 
 // service:         0000180f-0000-1000-8000-00805f9b34fb
 // characteristic:  00002a19-0000-1000-8000-00805f9b34fb
