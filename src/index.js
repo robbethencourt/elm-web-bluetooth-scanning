@@ -15,6 +15,7 @@ app.ports.requestBluetoothConnection.subscribe(() => {
     .then(server => {
       // Getting Battery Service...
       console.log(server)
+      console.log(server.getPrimaryServices())
       return server.getPrimaryService('battery_service')
     })
     .then(service => {
