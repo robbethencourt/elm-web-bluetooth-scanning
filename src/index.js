@@ -9,10 +9,12 @@ app.ports.requestBluetoothConnection.subscribe(() => {
   navigator.bluetooth.requestDevice({ filters: [{ services: ['battery_service'] }] })
     .then(device => {
       device.gatt.connect()
+      console.log(device)
       app.ports.bluetoothConnectionResponse.send(device.name)
     })
     .then(server => {
       // Getting Battery Service...
+      console.log(server)
       return server.getPrimaryService('battery_service')
     })
     .then(service => {
