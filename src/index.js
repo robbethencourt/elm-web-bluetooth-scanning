@@ -15,23 +15,23 @@ app.ports.requestBluetoothConnection.subscribe(() => {
     .then(server => {
       // Getting Battery Service...
       console.log(server)
-    // return server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb')
+      return server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb')
     })
-    // .then(service => {
-    //   console.log(service)
-    //   // Getting Battery Level Characteristic...
-    //   return service.getCharacteristic('00002a19-0000-1000-8000-00805f9b34fb')
-    // })
-    // .then(characteristic => {
-    //   console.log(characteristic)
-    //   // Reading Battery Level...
-    //   characteristic.addEventListener('characteristicvaluechanged', handleScannedBarcodes)
-    //   return characteristic.readValue()
-    // })
-    // .then(value => {
-    //   console.log(value)
-    //   console.log('Battery percentage is ' + value.getUint8(0))
-    // })
+    .then(service => {
+      console.log(service)
+      // Getting Battery Level Characteristic...
+      return service.getCharacteristic('00002a19-0000-1000-8000-00805f9b34fb')
+    })
+    .then(characteristic => {
+      console.log(characteristic)
+      // Reading Battery Level...
+      characteristic.addEventListener('characteristicvaluechanged', handleScannedBarcodes)
+      return characteristic.readValue()
+    })
+    .then(value => {
+      console.log(value)
+      console.log('Battery percentage is ' + value.getUint8(0))
+    })
     .catch(error => {
       console.log(error)
     })
