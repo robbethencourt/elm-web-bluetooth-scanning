@@ -14,7 +14,7 @@ app.ports.requestBluetoothConnection.subscribe(() => {
     })
     .then(server => {
       // Getting Battery Service...
-      server.addEventListener('scanButtonDown', handleScannedBarcodes)
+      console.log(server)
     // return server.getPrimaryService('0000180f-0000-1000-8000-00805f9b34fb')
     })
     // .then(service => {
