@@ -1,7 +1,7 @@
 port module Main exposing (..)
 
 import Html exposing (Html, text, div, h1, input, textarea, ul, li, button)
-import Html.Attributes exposing (class, value)
+import Html.Attributes exposing (class, value, type_)
 import Html.Events exposing (onClick)
 
 
@@ -53,7 +53,7 @@ view model =
     div [ class "container" ]
         [ h1 [ class "text-center" ] [ text "Elm Web Bluetooth Scanning App!" ]
         , button [ onClick RequestBluetoothConnection ] [ text "Connect to Bluetooth" ]
-        , input [] []
+        , input [ type_ "text" ] []
         , textarea [] []
         , ul []
             [ listItems model.deviceName ]
